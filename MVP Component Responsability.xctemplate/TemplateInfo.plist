@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DefaultCompletionName</key>
+	<string>NuevoComponente</string>
+  <key>Description</key>
+  <string>Se genera la estructura de encarpetado de responsabilidad para un componente según el patrón Modelo-Vista-Presentador y la Clean-Architecture.</string>
+  <key>Kind</key>
+  <string>Xcode.IDEKit.TextSubstitutionFileTemplateKind</string>
+  <key>Options</key>
+  <array>
+		<dict>
+			<key>Description</key>
+			<string>Nombre del componente a crear</string>
+			<key>Identifier</key>
+			<string>componentName</string>
+			<key>Name</key>
+			<string>Nombre del nuevo componente:</string>
+			<key>NotPersisted</key>
+			<true/>
+			<key>Required</key>
+			<true/>
+			<key>Type</key>
+			<string>text</string>
+		</dict>
+    <dict>
+			<key>Default</key>
+			<string>___VARIABLE_componentName:identifier___</string>
+			<key>Identifier</key>
+			<string>productName</string>
+			<key>Type</key>
+			<string>static</string>
+    </dict>
+    <dict>
+			<key>Default</key>
+			<string>___VARIABLE_componentName:identifier___View</string>
+			<key>Description</key>
+			<string>The view component name</string>
+			<key>Identifier</key>
+			<string>viewComponentName</string>
+			<key>Name</key>
+			<string>View Component Name:</string>
+			<key>Required</key>
+			<true/>
+			<key>Type</key>
+			<string>static</string>
+    </dict>
+    <dict>
+			<key>Default</key>
+			<string>___VARIABLE_componentName:identifier___BL</string>
+			<key>Description</key>
+			<string>The business logic layer name</string>
+			<key>Identifier</key>
+			<string>interactorName</string>
+			<key>Name</key>
+			<string>Interactor Name:</string>
+			<key>Required</key>
+			<true/>
+			<key>Type</key>
+			<string>static</string>
+    </dict>
+    <dict>
+			<key>Default</key>
+			<string>___VARIABLE_componentName:identifier___Presenter</string>
+			<key>Description</key>
+			<string>The presenter name</string>
+			<key>Identifier</key>
+			<string>presenterName</string>
+			<key>Name</key>
+			<string>Presenter Name:</string>
+			<key>Required</key>
+			<true/>
+			<key>Type</key>
+			<string>static</string>
+    </dict>
+  </array>
+  <key>Platforms</key>
+  <array>
+		<string>com.apple.platform.iphoneos</string>
+  </array>
+	<key>SortOrder</key>
+	<string>9</string>
+  <key>Summary</key>
+  <string>Se genera la estructura de encarpetado de componente según el patrón Modelo-Vista-Presentador y la Clean-Architecture.</string>
+  
+  <key>Definitions</key>
+  <dict>
+	  <key>___VARIABLE_componentName:identifier___BL.swift</key>
+	  <dict>
+		  <key>Path</key>
+		  <string>___VARIABLE_componentName:identifier___BL.swift</string>
+	  </dict>
+  </dict>
+  <key>Nodes</key>
+  <array>
+	  <string>___VARIABLE_componentName:identifier___BL.swift</string>
+  </array>
+
+</dict>
+</plist>
