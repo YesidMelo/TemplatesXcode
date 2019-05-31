@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopoverSelectorColor" customModule="APSoft" customModuleProvider="target">
+            <connections>
+                <outlet property="ContainerView" destination="iN0-l3-epB" id="JAn-Ad-Luq"/>
+                <outlet property="GreenColor" destination="EFk-CM-Fzw" id="KPl-us-egg"/>
+                <outlet property="RedColor" destination="yqF-0e-ouh" id="dBa-h5-qA8"/>
+                <outlet property="YellowColor" destination="dBm-Ev-rvY" id="Cb0-GH-b6N"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="164" height="53"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yqF-0e-ouh" customClass="PopoverColor" customModule="APSoft" customModuleProvider="target">
+                    <rect key="frame" x="22" y="16.5" width="30" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="ERB-Dg-4DB"/>
+                        <constraint firstAttribute="width" secondItem="yqF-0e-ouh" secondAttribute="height" multiplier="1:1" id="M9o-zr-iy2"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="radiusCorner">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="ColorDefault">
+                            <color key="value" red="1" green="0.84360227750000005" blue="0.088286744700000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="defaultColor">
+                            <color key="value" red="0.8814882624" green="0.1121644229" blue="0.13227026210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBm-Ev-rvY" customClass="PopoverColor" customModule="APSoft" customModuleProvider="target">
+                    <rect key="frame" x="67" y="16.5" width="30" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="dBm-Ev-rvY" secondAttribute="height" multiplier="1:1" id="PM2-gY-IHc"/>
+                        <constraint firstAttribute="height" constant="30" id="hsg-2C-Dsw"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="radiusCorner">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="ColorDefault">
+                            <color key="value" red="1" green="0.8436022775144143" blue="0.08828674470053921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="defaultColor">
+                            <color key="value" red="1" green="0.84360227750000005" blue="0.088286744700000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EFk-CM-Fzw" customClass="PopoverColor" customModule="APSoft" customModuleProvider="target">
+                    <rect key="frame" x="112" y="16.5" width="30" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="F3f-cf-ztK"/>
+                        <constraint firstAttribute="width" secondItem="EFk-CM-Fzw" secondAttribute="height" multiplier="1:1" id="bqi-ZO-CcF"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="radiusCorner">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="ColorDefault">
+                            <color key="value" red="1" green="0.84360227750000005" blue="0.088286744700000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="defaultColor">
+                            <color key="value" red="0.11705159399999999" green="0.50165098910000006" blue="0.29922670130000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="yqF-0e-ouh" firstAttribute="centerY" secondItem="dBm-Ev-rvY" secondAttribute="centerY" id="8pm-i4-TqV"/>
+                <constraint firstItem="EFk-CM-Fzw" firstAttribute="leading" secondItem="dBm-Ev-rvY" secondAttribute="trailing" constant="15" id="GhH-n2-Cys"/>
+                <constraint firstItem="dBm-Ev-rvY" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="MHv-lH-HDf"/>
+                <constraint firstItem="dBm-Ev-rvY" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="PZi-2C-Src"/>
+                <constraint firstItem="EFk-CM-Fzw" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="Xv9-8a-Fjz"/>
+                <constraint firstItem="dBm-Ev-rvY" firstAttribute="leading" secondItem="yqF-0e-ouh" secondAttribute="trailing" constant="15" id="wOc-pt-WZ2"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-291.304347826087" y="62.611607142857139"/>
+        </view>
+    </objects>
+</document>
