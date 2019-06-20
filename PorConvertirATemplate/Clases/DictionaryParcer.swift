@@ -10,7 +10,9 @@ import Foundation
 
 
 protocol DictionaryParcerCaster{ 
-    init() 
+    init()
+    func changeNameInAttribFromClass() -> [String:String]?
+    
 }
 
 class DictionaryParcer < T  : NSObject> {
@@ -27,7 +29,7 @@ class DictionaryParcer < T  : NSObject> {
         var propertyAndTypes = [String : String]()
         getPropertiesAndType(aMirror,&propertyAndTypes)
         
-        let customKeys : [String : String]? = (instance as! DictionaryParcerCaster).customKeysName()
+        let customKeys : [String : String]? = (instance as! DictionaryParcerCaster).changeNameInAttribFromClass()
         
         for item in propertyAndTypes{
             setValueInInstance(item,instance,customKeys,json)
@@ -46,7 +48,7 @@ class DictionaryParcer < T  : NSObject> {
         getPropertiesAndType(mirror!.superclassMirror,&propertiesAndType)
     }
     
-        
+    
     
     private func setValueInInstance(_ labelType : (String,String),_ instance : T,_ customKeys : [String : String]?,_ data : [String : AnyObject]){
         
@@ -202,9 +204,9 @@ class DictionaryParcer < T  : NSObject> {
             let objectToInsert = generateObjectByArray(modelValue,type)
             instance.setValue(objectToInsert, forKey: attribute)
             
-//            let modelType : ParcelableModel.Type = swiftClassFromString(type)
-//            let modelObject = modelType.init()
-//            modelObject.fromDictionary(modelValue)
+            //            let modelType : ParcelableModel.Type = swiftClassFromString(type)
+            //            let modelObject = modelType.init()
+            //            modelObject.fromDictionary(modelValue)
             
             return true
         }
@@ -259,8 +261,5 @@ extension DictionaryParcerCaster {
         
     }
     
-    public func customKeysName() -> [String : String]? {
-        return nil
-    }
 }
 
