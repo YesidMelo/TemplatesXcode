@@ -143,7 +143,8 @@ class DictionaryParcer < T  : NSObject> {
             var arrayObjects = [AnyObject]()
             
             for item in arrayValue {
-                arrayObjects.append(generateObjectByArray(item,type))
+                let objectCreated = generateObjectByArray(item,type)                
+                arrayObjects.append(objectCreated)
             }
             
             instance.setValue(arrayObjects, forKey: attribute)
@@ -154,8 +155,8 @@ class DictionaryParcer < T  : NSObject> {
         return false
     }
     
-    private func generateObjectByArray(_ item : [String : AnyObject],_ type : String) -> AnyObject{
-        let modelType : T.Type = swiftClassFromString(type)
+    private func generateObjectByArray<K : NSObject>(_ item : [String : AnyObject],_ type : String) -> K{
+        let modelType : K.Type = swiftClassFromString(type) as! K.Type
         
         let instanceModel = modelType.init()
         
@@ -166,12 +167,12 @@ class DictionaryParcer < T  : NSObject> {
         } catch {
             
             print("Surgui un error generando arreglo de objeto")
-            return instanceModel as AnyObject
+            return instanceModel 
         }      
         
     } 
     
-    func swiftClassFromString(_ className: String) -> T.Type {
+    func swiftClassFromString<K : NSObject>(_ className: String) -> K.Type {
         
         let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
         var path = appName + "." + className
@@ -182,7 +183,7 @@ class DictionaryParcer < T  : NSObject> {
         
         let anyClass: AnyClass = NSClassFromString(path)!
         
-        return anyClass as! T.Type
+        return anyClass as! K.Type
     }
     
     private func isDictionaryGeneric(_ attribute : String,_ type : String,_ propertyValue: AnyObject,_ instance : T) -> Bool{
@@ -204,10 +205,6 @@ class DictionaryParcer < T  : NSObject> {
             let objectToInsert = generateObjectByArray(modelValue,type)
             instance.setValue(objectToInsert, forKey: attribute)
             
-            //            let modelType : ParcelableModel.Type = swiftClassFromString(type)
-            //            let modelObject = modelType.init()
-            //            modelObject.fromDictionary(modelValue)
-            
             return true
         }
         
@@ -216,11 +213,101 @@ class DictionaryParcer < T  : NSObject> {
     
     
     
+    func convertFromArrayDictionary(_ data : [[ String : AnyObject ]] , _ instance : T) -> [T]{
+        
+        var arrayObjects = [T]()
+        
+        data.forEach{
+            item in 
+            
+            let copyInstance = T.init()
+            startInsertionInInstance(item,copyInstance )
+            arrayObjects.append(copyInstance)
+            
+        }
+        
+        return arrayObjects
+    }
     
     
     
-    func convertFromArrayDictionary(_ data : [[ String : AnyObject ]] , _ instance : T) {
-        print("")
+    
+    
+    
+    public func convertToDictionary(_ object : T) -> [String: AnyObject] {
+        
+        var dictionary = Dictionary<String, AnyObject>()
+        
+        var propertyAndTypes = [String : String]()
+        let mirror = Mirror(reflecting: object)
+        
+        getPropertiesAndType(mirror,&propertyAndTypes)
+        
+        for (label, _) in propertyAndTypes {
+            
+            fillDictionary(&dictionary,object,label)
+            
+        }
+        
+        return dictionary
+    }
+    
+    
+    private func fillDictionary(_ dictionary : inout Dictionary<String, AnyObject>,_ object : T,_ label : String){
+        
+        guard let propertyValue = object.value(forKey: label) else {
+            return
+        }
+        
+        if propertyValue is String
+        {
+            dictionary[label] = propertyValue as! String as AnyObject?
+            return 
+        }
+        
+        if propertyValue is NSNumber
+        {
+            dictionary[label] = propertyValue as! NSNumber
+            return 
+        }
+        
+        if propertyValue is Array<String>
+        {
+            dictionary[label] = propertyValue as AnyObject?
+            return 
+        }
+        
+        if propertyValue is Array<AnyObject>
+        {
+            let tmo = propertyValue as? Array<AnyObject>
+            var array = Array<[String: AnyObject]>()
+            
+            for item in (propertyValue as! Array<DictionaryParcerCaster>) {
+                do {
+                    let dictionaryLocal = try (item as! DictionaryParcerCaster).convertToDictionary(item as! NSObject)
+                    array.append(dictionaryLocal)
+                }catch {
+                    print("Error : fallo casteo de un item")
+                }
+            }
+            
+            dictionary[label] = array as AnyObject?
+            return 
+        }
+        
+        if propertyValue is NSDictionary
+        {
+            dictionary[label] = propertyValue as AnyObject?
+            return 
+        }
+        // AnyObject
+        do {
+            dictionary[label] = try (propertyValue as! DictionaryParcerCaster).convertToDictionary(propertyValue as! NSObject) as AnyObject
+        }catch {
+            print("Error :  fallo el casteo de un any object")
+        }
+        
+        
     }
     
 }
@@ -247,13 +334,12 @@ extension DictionaryParcerCaster {
         
     }
     
-    func convertFromArrayDictionaries<T : NSObject> (_ data : [[ String : AnyObject ]],_ object : T) throws {
+    func convertFromArrayDictionaries<T : NSObject> (_ data : [[ String : AnyObject ]],_ object : T) throws -> [T]{
         
         if object is DictionaryParcerCaster{
             
             let parcer = DictionaryParcer<T>()
-            parcer.convertFromArrayDictionary(data,object)
-            return
+            return parcer.convertFromArrayDictionary(data,object)
             
         }
         
@@ -261,5 +347,14 @@ extension DictionaryParcerCaster {
         
     }
     
+    func convertToDictionary<T : NSObject>(_ object : T) throws -> [String : AnyObject] {
+        
+        if !(object is DictionaryParcerCaster){
+            throw DictionaryParcerError.TypeInvalid 
+        }
+        
+        let parcer = DictionaryParcer<T>()
+        return parcer.convertToDictionary(object)
+    }
 }
 
